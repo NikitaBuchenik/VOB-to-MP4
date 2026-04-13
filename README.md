@@ -24,51 +24,43 @@ FFmpeg (устанавливается автоматически через pip
 1. Установка FFmpeg
 Откройте командную строку (cmd) или PowerShell и выполните:
 
-bash
 pip install imageio-ffmpeg
+
 Или если pip не установлен:
 
-bash
 python -m pip install imageio-ffmpeg
+
 2. Скачивание скрипта
 
 3. Настройка PowerShell (только один раз)
+
 Запустите PowerShell от имени администратора и выполните:
 
-powershell
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 4. Использование
-powershell
+
 .\convert.ps1 "C:\путь\к\папке\с\видео"
 Пример:
 
-powershell
 .\convert.ps1 "C:\АРХИВ ПЕРЕЗАГРУЗКИ\Перезагрузка ХР 2009"
-📁 Структура папок
-Скрипт ожидает следующую структуру:
 
-text
-Ваш_фильм/
-└── VIDEO_TS/
-    ├── VTS_01_0.VOB      (меню, будет пропущен)
-    ├── VTS_01_1.VOB      (основной фильм, часть 1)
-    ├── VTS_01_2.VOB      (основной фильм, часть 2)
-    ├── VTS_01_3.VOB      (основной фильм, часть 3)
-    └── ...
 # 🎛️ Настройка качества
 В скрипте можно изменить параметр -crf (Constant Rate Factor):
 
 CRF	Качество	Размер файла	Рекомендация
+
 18	Отличное	Большой	Для архивации
+
 23	Хорошее	Средний	По умолчанию (рекомендуется)
+
 28	Среднее	Маленький	Для мобильных устройств
+
 Чтобы изменить качество, отредактируйте строку в скрипте:
 
-powershell
 -crf 23  # Замените на нужное значение (18, 23 или 28)
 🔧 Альтернативные способы запуска
 Если скрипт не работает, используйте прямые команды:
-powershell
+
 ## 1. Найти FFmpeg
 $ffmpeg = Get-ChildItem "$env:USERPROFILE\AppData\Roaming\Python\Python314\site-packages\imageio_ffmpeg\binaries\ffmpeg*.exe" | Select-Object -First 1
 
@@ -85,12 +77,10 @@ $concat = ($files.FullName) -join "|"
 Проблема 1: FFmpeg не найден
 Решение: Установите FFmpeg через pip:
 
-bash
 pip install imageio-ffmpeg
 Проблема 2: Ошибка выполнения скриптов PowerShell
 Решение: Разрешите выполнение скриптов:
 
-powershell
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 Проблема 3: Русские символы в путях
 Решение: Скрипт поддерживает русские символы. Если возникают проблемы, используйте английские названия папок.
