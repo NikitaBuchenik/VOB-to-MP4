@@ -58,35 +58,6 @@ CRF	Качество	Размер файла	Рекомендация
 Чтобы изменить качество, отредактируйте строку в скрипте:
 
 -crf 23  # Замените на нужное значение (18, 23 или 28)
-🔧 Альтернативные способы запуска
-Если скрипт не работает, используйте прямые команды:
-
-## 1. Найти FFmpeg
-$ffmpeg = Get-ChildItem "$env:USERPROFILE\AppData\Roaming\Python\Python314\site-packages\imageio_ffmpeg\binaries\ffmpeg*.exe" | Select-Object -First 1
-
-## 2. Перейти в VIDEO_TS
-cd "C:\путь\к\фильму\VIDEO_TS"
-
-## 3. Получить список VOB файлов
-$files = Get-ChildItem "*.VOB" | Where-Object { $_.Name -notlike "*0.VOB" }
-$concat = ($files.FullName) -join "|"
-
-## 4. Конвертировать
-& $ffmpeg.FullName -i "concat:$concat" -c:v libx264 -crf 23 -c:a aac -y "..\фильм.mp4"
-❗ Возможные проблемы и решения
-Проблема 1: FFmpeg не найден
-Решение: Установите FFmpeg через pip:
-
-pip install imageio-ffmpeg
-Проблема 2: Ошибка выполнения скриптов PowerShell
-Решение: Разрешите выполнение скриптов:
-
-Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
-Проблема 3: Русские символы в путях
-Решение: Скрипт поддерживает русские символы. Если возникают проблемы, используйте английские названия папок.
-
-Проблема 4: Не хватает места на диске
-Решение: Убедитесь, что на диске достаточно места. Выходной MP4 файл будет примерно на 30-50% меньше исходных VOB файлов.
 
 # 📊 Процесс конвертации
 Скрипт находит все VOB файлы в папке VIDEO_TS
